@@ -29,6 +29,7 @@ const createRestaurantDetailTemplate = (restaurant) => `
       <section class="restaurant-detail__description">
         <h3>Description</h3>
         <p>${restaurant.description}</p>
+        <div id="likeButtonContainer"></div>
       </section>
 
       <section class="restaurant-detail__menus">

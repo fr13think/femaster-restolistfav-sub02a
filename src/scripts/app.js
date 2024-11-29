@@ -42,6 +42,23 @@ class App {
       await this._renderHome();
     } else if (url.resource === 'detail' && url.id) {
       await this._renderDetail(url.id);
+    } else if (url.resource === 'favorite') {
+      await this._renderFavorite();
+    }
+  }
+
+  async _renderFavorite() {
+    try {
+      const favoriteModule = await import('./views/pages/favorite'); // Dynamically import the favorite module
+      const Favorite = favoriteModule.default;
+
+      // Render the favorite page
+      this._content.innerHTML = await Favorite.render();
+
+      // Call afterRender to load the favorite restaurants
+      await Favorite.afterRender();
+    } catch (error) {
+      this._showError(error.message);
     }
   }
 
@@ -110,7 +127,7 @@ class App {
               `).join('')
 }
           </div>
-</section>
+        </section>
 
         <!-- All Restaurants Section -->
         <section class="content">
@@ -163,6 +180,14 @@ class App {
       this._showLoading();
       const restaurant = await RestaurantSource.detail(id);
       this._renderRestaurantDetail(restaurant);
+
+      const likeButtonContainer = document.querySelector('#likeButtonContainer');
+
+      await this.LikeButtonInitiator.init({
+        likeButtonContainer,
+        favoriteRestaurants: FavoriteRestaurantIdb,
+        restaurant,
+      });
     } catch (error) {
       this._showError(error.message);
     }
@@ -253,6 +278,7 @@ class App {
             </div>
           </div>
         </div>
+        <div id="likeButtonContainer"></div>
       </article>
     `;
   }
@@ -274,6 +300,59 @@ class App {
       </div>
     `;
   }
+
+  LikeButtonInitiator = {
+    async init({ likeButtonContainer, favoriteRestaurants, restaurant }) {
+      this._likeButtonContainer = likeButtonContainer;
+      this._restaurant = restaurant;
+      this._favoriteRestaurants = favoriteRestaurants;
+
+      await this._renderButton();
+    },
+
+    async _renderButton() {
+      const { id } = this._restaurant;
+
+      if (await this._isRestaurantExist(id)) {
+        this._renderLiked();
+      } else {
+        this._renderLike();
+      }
+    },
+
+    async _isRestaurantExist(id) {
+      const restaurant = await this._favoriteRestaurants.getRestaurant(id);
+      return !!restaurant;
+    },
+
+    _renderLike() {
+      this._likeButtonContainer.innerHTML = `
+        <button aria-label="like this restaurant" id="likeButton" class="like">
+          <i class="far fa-heart" aria-hidden="true"></i>
+        </button>
+      `;
+
+      const likeButton = document.querySelector('#likeButton');
+      likeButton.addEventListener('click', async () => {
+        await this._favoriteRestaurants.putRestaurant(this._restaurant);
+        this._renderButton();
+      });
+    },
+
+    _renderLiked() {
+      this._likeButtonContainer.innerHTML = `
+        <button aria-label="unlike this restaurant" id="likeButton" class="like">
+          <i class="fas fa-heart" aria-hidden="true"></i>
+        </button>
+      `;
+
+      const likeButton = document.querySelector('#likeButton');
+      likeButton.addEventListener('click', async () => {
+        await this._favoriteRestaurants.deleteRestaurant(this._restaurant.id);
+        this._renderButton();
+      });
+    },
+  };
 }
 
 export default App;

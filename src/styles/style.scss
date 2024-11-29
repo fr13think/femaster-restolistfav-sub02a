@@ -405,7 +405,7 @@ footer {
   &__header {
     position: relative;
     width: 100%;
-    height: 50vh;
+    height: 40h;
     min-height: 400px;
     overflow: hidden;
 
@@ -417,6 +417,7 @@ footer {
 
     &__info {
       position: absolute;
+      margin-bottom: 20px;
       bottom: 0;
       left: 0;
       right: 0;
@@ -887,5 +888,66 @@ footer {
     i {
       color: #FFD700;
     }
+  }
+}
+
+// Favorite Like
+.like {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $primary-color;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  border-radius: 50%;
+  border: 0;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  z-index: 99;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $primary-color-dark;
+    transform: scale(1.1);
+  }
+
+  i {
+    font-size: 1.5em;
+  }
+}
+
+.restaurant-item__not__found {
+  text-align: center;
+  padding: 32px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 16px;
+
+  i {
+    font-size: 48px;
+    color: $gray-color;
+    margin-bottom: 16px;
+  }
+
+  p {
+    color: $gray-color;
+    margin: 0;
+  }
+}
+
+.favorite-restaurants {
+  margin-top: 80px; /* Memberikan jarak dari header yang fixed */
+  padding-top: 24px;
+
+  .content__heading {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    color: $dark-color;
+    margin-bottom: 32px;
   }
 }
