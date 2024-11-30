@@ -2,7 +2,7 @@ import 'regenerator-runtime';
 import '../styles/style.scss';
 import '../styles/responsive.scss';
 import App from './app';
-import { swRegister, runtime, initServiceWorkerMessaging } from './utils/sw-register';
+import swRegister from './utils/sw-register';
 
 // Import components
 import './components/app-bar';
@@ -21,17 +21,7 @@ window.addEventListener('hashchange', () => {
 
 window.addEventListener('load', async () => {
   app.renderPage();
-
-  // Initialize service worker only in production
-  if (window.ENV === 'production') {
-    try {
-      await swRegister();
-      await runtime.waitUntilReady();
-      initServiceWorkerMessaging();
-    } catch (error) {
-      console.error('Failed to initialize service worker', error);
-    }
-  }
+  swRegister();
 });
 
 // PWA enhancement - Add to Home Screen

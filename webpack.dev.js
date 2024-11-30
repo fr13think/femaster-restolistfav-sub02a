@@ -1,8 +1,7 @@
 /* eslint-disable no-undef */
-const path = require('path');
 const { merge } = require('webpack-merge');
+const path = require('path');
 const common = require('./webpack.common');
-const webpack = require('webpack');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -19,9 +18,4 @@ module.exports = merge(common, {
     },
     compress: true,
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'window.ENV': JSON.stringify('development'),
-    }),
-  ],
 });
