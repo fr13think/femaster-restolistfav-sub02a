@@ -14,7 +14,6 @@ const Home = {
 
   async afterRender() {
     try {
-      // Tampilkan loading
       const restaurantsContainer = document.querySelector('#restaurants');
       restaurantsContainer.innerHTML = '<div class="loader">Loading...</div>';
 
@@ -25,7 +24,6 @@ const Home = {
         return;
       }
 
-      // Bersihkan loading
       restaurantsContainer.innerHTML = '';
 
       restaurants.forEach((restaurant) => {

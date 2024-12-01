@@ -36,7 +36,6 @@ const Favorite = {
         }
       });
 
-      // Initialize lazy loading for images
       const lazyLoadImages = document.querySelectorAll('img.lazyload');
       if ('loading' in HTMLImageElement.prototype) {
         lazyLoadImages.forEach((img) => {
@@ -45,7 +44,6 @@ const Favorite = {
           }
         });
       } else {
-        // Fallback for browsers that don't support native lazy loading
         const lazyLoadScript = document.createElement('script');
         lazyLoadScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
         document.body.appendChild(lazyLoadScript);

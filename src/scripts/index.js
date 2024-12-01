@@ -4,7 +4,6 @@ import '../styles/responsive.scss';
 import App from './app';
 import swRegister from './utils/sw-register';
 
-// Import components
 import './components/app-bar';
 import './components/hero-element';
 import './components/restaurant-item';
@@ -24,7 +23,6 @@ window.addEventListener('load', async () => {
   swRegister();
 });
 
-// PWA enhancement - Add to Home Screen
 const initPWAInstallation = () => {
   let deferredPrompt;
   const addBtn = document.querySelector('.add-button');

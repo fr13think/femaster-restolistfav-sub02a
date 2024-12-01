@@ -11,7 +11,6 @@ class RestaurantSource {
       return responseJson.restaurants;
     } catch (error) {
       console.error('Error while fetching restaurants:', error);
-      // Jika offline dan tidak ada cache, kembalikan data minimal
       if (!navigator.onLine) {
         return [];
       }

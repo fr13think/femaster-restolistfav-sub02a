@@ -10,12 +10,10 @@ const swRegister = async () => {
     const wb = new WorkboxWindow.Workbox('/sw.bundle.js');
 
     const showSkipWaitingPrompt = async () => {
-      // Ini akan memunculkan prompt reload ketika ada update SW
       await wb.messageSkipWaiting();
       window.location.reload();
     };
 
-    // Add listener for waiting service worker
     wb.addEventListener('waiting', showSkipWaitingPrompt);
     wb.addEventListener('externalwaiting', showSkipWaitingPrompt);
 

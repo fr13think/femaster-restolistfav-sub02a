@@ -10,7 +10,7 @@ class AppBar extends HTMLElement {
             <button id="hamburgerButton">☰</button>
           </div>
           <div class="app-bar__brand">
-            <h1>Restaurant Catalog</h1>
+            <h1>Restaurant Favorite</h1>
           </div>
           <nav id="navigationDrawer" class="app-bar__navigation">
             <ul>

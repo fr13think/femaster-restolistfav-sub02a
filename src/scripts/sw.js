@@ -4,10 +4,8 @@ import { StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
 
-// Do precaching
 precacheAndRoute(self.__WB_MANIFEST);
 
-// Cache pages
 registerRoute(
   ({ request }) => request.mode === 'navigate',
   new StaleWhileRevalidate({
@@ -15,7 +13,6 @@ registerRoute(
   })
 );
 
-// Cache Restaurant API
 registerRoute(
   ({ url }) => url.origin === 'https://restaurant-api.dicoding.dev',
   new StaleWhileRevalidate({
@@ -28,7 +25,6 @@ registerRoute(
   })
 );
 
-// Cache Restaurant Images
 registerRoute(
   ({ request, url }) =>
     request.destination === 'image' &&
@@ -47,7 +43,6 @@ registerRoute(
   })
 );
 
-// Cache CSS, JS, and Web Fonts
 registerRoute(
   ({ request }) =>
     request.destination === 'style' ||

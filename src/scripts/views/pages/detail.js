@@ -10,7 +10,7 @@ const Detail = {
 
   async afterRender() {
     const url = window.location.hash;
-    const id = url.slice(9); // Remove '#/detail/'
+    const id = url.slice(9);
 
     try {
       const restaurant = await RestaurantSource.detail(id);

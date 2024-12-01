@@ -22,7 +22,6 @@ const FavoriteRestaurantIdb = {
   },
 
   async putRestaurant(restaurant) {
-    // Menggunakan Object.prototype.hasOwnProperty.call() sebagai gantinya
     if (!Object.prototype.hasOwnProperty.call(restaurant, 'id')) {
       return;
     }
