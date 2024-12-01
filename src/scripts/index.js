@@ -26,7 +26,7 @@ window.addEventListener('load', async () => {
 const skipLinkElem = document.querySelector('.skip-link');
 skipLinkElem?.addEventListener('click', (event) => {
   event.preventDefault();
-  const contentSection = document.querySelector('.content');
+  const contentSection = document.querySelector('#mainContent');
   if (contentSection) {
     contentSection.focus();
     contentSection.scrollIntoView({ behavior: 'smooth' });
