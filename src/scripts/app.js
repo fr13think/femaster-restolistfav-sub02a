@@ -13,6 +13,23 @@ class App {
     this._button = button;
     this._drawer = drawer;
     this._initialAppShell();
+    this._initSplashScreen();
+  }
+
+  _initSplashScreen() {
+    const splashScreen = document.getElementById('splashScreen');
+
+    if (splashScreen) {
+      // Tampilkan splash screen selama 2 detik
+      setTimeout(() => {
+        splashScreen.classList.add('fade-out');
+
+        // Hapus splash screen setelah animasi selesai
+        setTimeout(() => {
+          splashScreen.remove();
+        }, 500);
+      }, 2000);
+    }
   }
 
   _initialAppShell() {
