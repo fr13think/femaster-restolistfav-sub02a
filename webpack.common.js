@@ -67,8 +67,9 @@ module.exports = {
       swDest: './sw.bundle.js',
       clientsClaim: true,
       skipWaiting: true,
-      maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
+      maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // Menambah limit menjadi 5MB
       runtimeCaching: [
+        // Cache untuk Google Fonts
         {
           urlPattern: /^https:\/\/fonts\.googleapis\.com/,
           handler: 'StaleWhileRevalidate',
@@ -85,10 +86,11 @@ module.exports = {
               statuses: [0, 200],
             },
             expiration: {
-              maxAgeSeconds: 60 * 60 * 24 * 365, // 1 tahun
+              maxAgeSeconds: 60 * 60 * 24 * 365,
             },
           },
         },
+        // Cache untuk Swiper CSS
         {
           urlPattern: /^https:\/\/unpkg\.com\/swiper/,
           handler: 'CacheFirst',
@@ -98,23 +100,26 @@ module.exports = {
               statuses: [0, 200],
             },
             expiration: {
-              maxAgeSeconds: 60 * 60 * 24 * 30, // 30 hari
+              maxAgeSeconds: 60 * 60 * 24 * 30,
             },
           },
         },
+        // Cache untuk API
         {
           urlPattern: new RegExp('^https://restaurant-api\\.dicoding\\.dev/'),
-          handler: 'StaleWhileRevalidate',
+          handler: 'NetworkFirst',
           options: {
             cacheName: 'dicoding-restaurant-api',
+            networkTimeoutSeconds: 5,
             cacheableResponse: {
               statuses: [0, 200],
             },
             expiration: {
-              maxAgeSeconds: 60 * 60 * 24, // 24 jam
+              maxAgeSeconds: 60 * 60 * 24,
             },
           },
         },
+        // Cache untuk gambar restaurant
         {
           urlPattern: /^https:\/\/restaurant-api\.dicoding\.dev\/images/,
           handler: 'CacheFirst',
@@ -124,7 +129,7 @@ module.exports = {
               statuses: [0, 200],
             },
             expiration: {
-              maxAgeSeconds: 60 * 60 * 24 * 30, // 30 hari
+              maxAgeSeconds: 60 * 60 * 24 * 30,
               maxEntries: 50,
             },
           },
