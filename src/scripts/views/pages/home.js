@@ -4,11 +4,11 @@ const Home = {
   async render() {
     return `
       <hero-element></hero-element>
-      <div class="content">
+      <section id="mainContent" class="content" tabindex="0">
         <h2 class="content__heading">Explore Restaurants</h2>
         <div id="restaurants" class="restaurants">
         </div>
-      </div>
+      </section>
     `;
   },
 
@@ -25,7 +25,6 @@ const Home = {
       }
 
       restaurantsContainer.innerHTML = '';
-
       restaurants.forEach((restaurant) => {
         const restaurantElement = document.createElement('restaurant-item');
         restaurantElement.restaurant = restaurant;
@@ -34,7 +33,9 @@ const Home = {
     } catch (error) {
       console.error(error);
       const restaurantsContainer = document.querySelector('#restaurants');
-      restaurantsContainer.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+      if (restaurantsContainer) {
+        restaurantsContainer.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+      }
     }
   },
 };

@@ -23,6 +23,16 @@ window.addEventListener('load', async () => {
   swRegister();
 });
 
+const skipLinkElem = document.querySelector('.skip-link');
+skipLinkElem?.addEventListener('click', (event) => {
+  event.preventDefault();
+  const contentSection = document.querySelector('.content');
+  if (contentSection) {
+    contentSection.focus();
+    contentSection.scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
 const initPWAInstallation = () => {
   let deferredPrompt;
   const addBtn = document.querySelector('.add-button');

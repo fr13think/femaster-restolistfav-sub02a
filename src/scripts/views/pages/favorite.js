@@ -22,10 +22,11 @@ const Favorite = {
 
       if (restaurants.length === 0) {
         restaurantsContainer.innerHTML = `
-          <div class="restaurant-item__not__found">
-            <i class="fas fa-heart-broken"></i>
-            <p>You don't have any favorite restaurants yet.</p>
-          </div>
+            <div class="favorite-item__not__found">
+              <i class="fas fa-heart-broken"></i>
+              <h3>No Favorites Found</h3>
+              <p>You don't have any favorite restaurants yet.</p>
+            </div>
         `;
         return;
       }
