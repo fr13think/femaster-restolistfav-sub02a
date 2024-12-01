@@ -67,6 +67,7 @@ module.exports = {
       swDest: './sw.bundle.js',
       clientsClaim: true,
       skipWaiting: true,
+      maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
       runtimeCaching: [
         // Cache untuk Google Fonts
         {

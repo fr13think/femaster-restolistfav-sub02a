@@ -1,7 +1,7 @@
 {
-  "name": "Restaurant Catalogue",
-  "short_name": "RestoCat",
-  "description": "Restaurant Catalogue for Food Lovers",
+  "name": "Restolist Favorite",
+  "short_name": "RestolistFav",
+  "description": "Restaurant List Favorite for Food Lovers",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
