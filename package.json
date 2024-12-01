@@ -1,6 +1,6 @@
 {
-  "name": "restaurant-apps",
-  "version": "1.0.0",
+  "name": "restolist-fav",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "fix": "eslint ./src --fix"
   },
   "keywords": [],
-  "author": "your_name",
+  "author": "yudhae",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.23.5",

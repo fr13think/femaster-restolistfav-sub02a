@@ -2,7 +2,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { GenerateSW } = require('workbox-webpack-plugin'); // Ubah import ini
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -69,7 +69,6 @@ module.exports = {
       skipWaiting: true,
       maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
       runtimeCaching: [
-        // Cache untuk Google Fonts
         {
           urlPattern: /^https:\/\/fonts\.googleapis\.com/,
           handler: 'StaleWhileRevalidate',
@@ -90,7 +89,6 @@ module.exports = {
             },
           },
         },
-        // Cache untuk Swiper CSS
         {
           urlPattern: /^https:\/\/unpkg\.com\/swiper/,
           handler: 'CacheFirst',
@@ -104,7 +102,6 @@ module.exports = {
             },
           },
         },
-        // Cache untuk API
         {
           urlPattern: new RegExp('^https://restaurant-api\\.dicoding\\.dev/'),
           handler: 'StaleWhileRevalidate',
@@ -118,7 +115,6 @@ module.exports = {
             },
           },
         },
-        // Cache untuk gambar restaurant
         {
           urlPattern: /^https:\/\/restaurant-api\.dicoding\.dev\/images/,
           handler: 'CacheFirst',
